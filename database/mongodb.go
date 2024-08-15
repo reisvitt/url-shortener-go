@@ -9,9 +9,9 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-var MongoClient *mongo.Client
+var Db *mongo.Database
 
-func InitializeMongoDB(uri string) {
+func InitializeMongoDB(uri, database string) {
 	// initialize MongoDB client with provided URI
 	// establish connection to the MongoDB server
 	// return error if connection fails
@@ -38,7 +38,7 @@ func InitializeMongoDB(uri string) {
 		panic(err)
 	}
 
-	MongoClient = client
+	Db = client.Database(database)
 
 	fmt.Println("Connected to MongoDB!")
 }
