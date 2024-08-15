@@ -4,6 +4,7 @@ import (
 	"context"
 	"time"
 
+	"github.com/reisvitt/url-shortener-go/configs"
 	"github.com/reisvitt/url-shortener-go/models"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -26,7 +27,7 @@ func (repo *mongoUrlRepository) Create(url *models.Url) (*models.Url, error) {
 	}
 
 	if url.ExpiresAt.IsZero() {
-		url.ExpiresAt = url.CreatedAt.Add(30 * 24 * time.Hour)
+		url.ExpiresAt = url.CreatedAt.Add(configs.TIME_TO_EXPIRES)
 	}
 
 	_, err := repo.collection.InsertOne(ctx, url)
