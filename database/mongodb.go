@@ -2,6 +2,7 @@ package database
 
 import (
 	"context"
+	"fmt"
 	"time"
 
 	"go.mongodb.org/mongo-driver/mongo"
@@ -39,5 +40,5 @@ func InitializeMongoDB(uri string) {
 
 	MongoClient = client
 
-	print("Connected to MongoDB!")
+	fmt.Println("Connected to MongoDB!")
 }
