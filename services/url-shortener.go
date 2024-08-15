@@ -1,6 +1,17 @@
 package services
 
-import "github.com/reisvitt/url-shortener-go/models"
+import (
+	"github.com/reisvitt/url-shortener-go/models"
+	"github.com/reisvitt/url-shortener-go/repository"
+)
+
+type UrlService struct {
+	repo repository.UrlRepository
+}
+
+func NewUrlService(repository repository.UrlRepository) *UrlService {
+	return &UrlService{repo: repository}
+}
 
 func CreateShortenUrl(url *models.Url) (*models.Url, error) {
 	// create a new shorten url
