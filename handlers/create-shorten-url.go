@@ -1,14 +1,48 @@
 package handlers
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/reisvitt/url-shortener-go/dto"
 )
 
 func (h *UrlHandler) CreateShortenUrlHandler(ctx *gin.Context) {
-	ctx.JSON(http.StatusCreated, gin.H{
-		"message": "URL shortening request received",
-		"status":  "success",
-	})
+	urlDTO := dto.UrlDTO{}
+
+	if err := ctx.BindJSON(&urlDTO); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"message": "Invalid request body",
+			"status":  "error",
+			"error":   err.Error(),
+		})
+		return
+	}
+
+	if err := urlDTO.Validate(); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"message": "Invalid request body",
+			"status":  "error",
+			"error":   err.Error(),
+		})
+		return
+	}
+
+	// create a new shorten url
+	url, err := h.service.CreateShortenUrl(&urlDTO)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Failed to create shorten URL",
+			"status":  "error",
+			"error":   err.Error(),
+		})
+		return
+	}
+
+	/* ctx.JSON(http.StatusOK, gin.H{
+		url: url.
+	}) */
+
+	fmt.Printf("URl: %v", url)
 }
