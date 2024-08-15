@@ -1,9 +1,8 @@
 package router
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
+	"github.com/reisvitt/url-shortener-go/handlers"
 )
 
 func initializeRoutes(router *gin.Engine) {
@@ -12,20 +11,6 @@ func initializeRoutes(router *gin.Engine) {
 	v1 := router.Group("/api/v1")
 
 	// defining route
-	v1.POST("/shorten-url", handlerCreateShortener)
-	v1.GET("/:path", handlerGetShortedUrl)
-}
-
-func handlerCreateShortener(ctx *gin.Context) {
-	ctx.JSON(http.StatusCreated, gin.H{
-		"message": "URL shortening request received",
-		"status":  "success",
-	})
-}
-
-func handlerGetShortedUrl(ctx *gin.Context) {
-	ctx.JSON(http.StatusPermanentRedirect, gin.H{
-		"message": "Redirecting to path",
-		"status":  "success",
-	})
+	v1.POST("/shorten-url", handlers.CreateShortenUrlHandler)
+	v1.GET("/:path", handlers.GetShortedUrlHandler)
 }
