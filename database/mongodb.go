@@ -26,12 +26,6 @@ func InitializeMongoDB(uri, database string) {
 		panic(err)
 	}
 
-	defer func() {
-		if err := client.Disconnect(ctx); err != nil {
-			panic(err)
-		}
-	}()
-
 	// Verifica a conexão
 	err = client.Ping(ctx, nil)
 	if err != nil {
