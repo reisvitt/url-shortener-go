@@ -7,7 +7,7 @@ import (
 
 func main() {
 	// initialize database
-	database.InitializeMongoDB("mongodb://admin:admin@localhost:27017/")
+	database.InitializeMongoDB("mongodb://admin:admin@localhost:27017/", "shortenerdb")
 
 	// initialize router
 	router.Initialize()
