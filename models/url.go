@@ -1,9 +1,12 @@
 package models
 
-import "time"
+import (
+	"time"
+)
 
 type Url struct {
-	ID        string    `json:"id"`
-	FullUrl   string    `json:"full-url"`
-	ExpiresAt time.Time `json:"expires-at"`
+	ID        string    `bson:"_id" json:"id"`
+	FullUrl   string    `bson:"name" json:"full-url"`
+	ExpiresAt time.Time `bson:"expires-at" json:"expires-at"`
+	CreatedAt time.Time `bson:"created-at" json:"created-at"`
 }
