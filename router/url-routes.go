@@ -9,7 +9,7 @@ import (
 func initializeUrlRoutes(router *gin.Engine, service *services.UrlService) {
 
 	// defining API group with version prefix
-	v1 := router.Group("/api/v1")
+	v1 := router.Group("")
 
 	// initializing URL handlers
 	urlHandlers := handlers.NewUrlHandler(service)
