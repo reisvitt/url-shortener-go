@@ -6,6 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/reisvitt/url-shortener-go/dto"
+	"github.com/reisvitt/url-shortener-go/utils"
 )
 
 func (h *UrlHandler) CreateShortenUrlHandler(ctx *gin.Context) {
@@ -40,9 +41,9 @@ func (h *UrlHandler) CreateShortenUrlHandler(ctx *gin.Context) {
 		return
 	}
 
-	/* ctx.JSON(http.StatusOK, gin.H{
-		url: url.
-	}) */
+	domain := *utils.GetDomain(ctx)
 
-	fmt.Printf("URl: %v", url)
+	ctx.JSON(http.StatusOK, gin.H{
+		"url": fmt.Sprintf("%s/%s", domain, url.ID),
+	})
 }
