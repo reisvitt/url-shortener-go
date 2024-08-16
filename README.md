@@ -22,9 +22,15 @@ Resolução do desafio proposto pelo repositorio Backend Brasil, confira detalhe
    git clone https://github.com/reisvitt/url-shortener-go.git
    ```
 
-2. Faça uma cópia do .env.example e insirá suas variáveis de ambiente.
+2. Navegue até a pasta da aplicação:
 
-3. Execute o comando docker compose up (Opcional)
+   ```bash
+   cd url-shortener-go
+   ```
+
+3. Faça uma cópia do .env.example e insirá suas variáveis de ambiente.
+
+4. Execute o comando docker compose up (Opcional)
 
    _Certifique-se de ter o Docker instalado em sua máquina_
 
@@ -34,7 +40,7 @@ Resolução do desafio proposto pelo repositorio Backend Brasil, confira detalhe
 
    _Caso for utilizar um banco MongoDB já existente, insirá o DB_CONNECTION no arquivo .env_
 
-4. Inicie o servidor
+5. Inicie o servidor
 
    ```bash
      go run main.go
