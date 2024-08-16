@@ -15,7 +15,7 @@ func CreateTTLIndex(collection *mongo.Collection) error {
 	defer cancel()
 
 	indexModel := mongo.IndexModel{
-		Keys:    bson.M{"created-at": 1},                  // Field that will be used for the TTL index
+		Keys:    bson.M{"expires-at": 1},                  // Field that will be used for the TTL index
 		Options: options.Index().SetExpireAfterSeconds(0), // Expires exactly on the date set
 	}
 
