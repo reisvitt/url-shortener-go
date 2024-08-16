@@ -23,7 +23,7 @@ func main() {
 	// initialize database
 	database.InitializeMongoDB(dbConnection, dbName)
 
-	// create TTL index on 'created-at' field in 'urls' collection
+	// create TTL index on 'expires-at' field in 'urls' collection
 	database.CreateTTLIndex(database.Db.Collection("urls"))
 
 	// initialize respository
