@@ -1,6 +1,9 @@
 package main
 
 import (
+	"os"
+
+	"github.com/joho/godotenv"
 	"github.com/reisvitt/url-shortener-go/database"
 	"github.com/reisvitt/url-shortener-go/repository"
 	"github.com/reisvitt/url-shortener-go/router"
@@ -8,8 +11,17 @@ import (
 )
 
 func main() {
+	err := godotenv.Load()
+
+	if err != nil {
+		panic(err)
+	}
+
+	dbConnection := os.Getenv("DB_CONNECTION")
+	dbName := os.Getenv("DB_NAME")
+
 	// initialize database
-	database.InitializeMongoDB("mongodb://admin:admin@localhost:27017/", "shortenerdb")
+	database.InitializeMongoDB(dbConnection, dbName)
 
 	// create TTL index on 'created-at' field in 'urls' collection
 	database.CreateTTLIndex(database.Db.Collection("urls"))

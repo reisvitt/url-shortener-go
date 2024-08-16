@@ -3,14 +3,14 @@ module github.com/reisvitt/url-shortener-go
 go 1.22.6
 
 require (
+	github.com/aidarkhanov/nanoid/v2 v2.0.5
 	github.com/gin-gonic/gin v1.10.0
 	github.com/go-playground/validator/v10 v10.22.0
+	github.com/joho/godotenv v1.5.1
 	go.mongodb.org/mongo-driver v1.16.1
 )
 
 require (
-	github.com/aidarkhanov/nanoid v1.0.8 // indirect
-	github.com/aidarkhanov/nanoid/v2 v2.0.5 // indirect
 	github.com/bytedance/sonic v1.12.1 // indirect
 	github.com/bytedance/sonic/loader v0.2.0 // indirect
 	github.com/cloudwego/base64x v0.1.4 // indirect

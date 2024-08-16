@@ -26,7 +26,7 @@ func InitializeMongoDB(uri, database string) {
 		panic(err)
 	}
 
-	// Verifica a conexão
+	// verify connection to MongoDB server
 	err = client.Ping(ctx, nil)
 	if err != nil {
 		panic(err)
