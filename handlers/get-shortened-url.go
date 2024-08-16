@@ -7,8 +7,18 @@ import (
 )
 
 func (h *UrlHandler) GetShortedUrlHandler(ctx *gin.Context) {
-	ctx.JSON(http.StatusPermanentRedirect, gin.H{
-		"message": "Redirecting to path",
-		"status":  "success",
-	})
+	uri := ctx.Request.RequestURI
+	uri = uri[1:] // remove "/" from start of url
+
+	fullUrl, err := h.service.GetShortenedUrl(&uri)
+
+	if err != nil {
+		ctx.JSON(http.StatusNotFound, gin.H{
+			"message": "URL not found",
+			"status":  "not-found",
+		})
+		return
+	}
+
+	ctx.Redirect(http.StatusPermanentRedirect, *fullUrl)
 }
