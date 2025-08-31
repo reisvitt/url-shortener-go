@@ -2,8 +2,8 @@ package main
 
 import (
 	"os"
+	"log"
 
-	"github.com/joho/godotenv"
 	"github.com/reisvitt/url-shortener-go/database"
 	"github.com/reisvitt/url-shortener-go/repository"
 	"github.com/reisvitt/url-shortener-go/router"
@@ -11,14 +11,12 @@ import (
 )
 
 func main() {
-	err := godotenv.Load()
-
-	if err != nil {
-		panic(err)
-	}
-
 	dbConnection := os.Getenv("DB_CONNECTION")
 	dbName := os.Getenv("DB_NAME")
+
+	if dbConnection == "" {
+		log.Fatal("DB_CONNECTION not set")
+	}
 
 	// initialize database
 	database.InitializeMongoDB(dbConnection, dbName)
